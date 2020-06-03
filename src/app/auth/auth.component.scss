@@ -1,0 +1,19 @@
+
+.container {
+    height: 100%;
+
+    > div {
+        height: 100%;
+    }
+}
+
+.center-side {
+    flex-grow: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-1 {
+    flex: 1;
+}

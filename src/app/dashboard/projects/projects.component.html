@@ -1,0 +1,56 @@
+<nav class="navbar navbar sticky-top flex-md-nowrap p-0 mb-3">
+  <div class="navbar-actions">
+    <form action="">
+      <input type="text" class="form-control" placeholder="Search">
+    </form>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <i-feather name="user"></i-feather>
+    </li>
+    <li class="nav-item text-nowrap">
+      <i-feather name="bell"></i-feather>
+    </li>
+  </ul>
+</nav>
+
+<div class="project-list">
+  <div class="project-item mb-3">
+    <hr>
+
+    <div class="project-item-header">
+      <h3>Personal updates <small><span class="badge badge-danger">Private</span></small></h3>
+      <button class="btn btn-link">
+        <i-feather name="more-vertical"></i-feather>
+      </button>
+    </div>
+
+    <hr />
+
+    <div class="project-item-users">
+      <a href="" class="project-owner">
+        <span>AB</span>
+        Andrew Boyd
+      </a>
+      <a href="" class="project-user">
+        <span>GM</span>
+        Gabriel Medina
+      </a>
+      <a routerLink="dashboard/project/1/users/add" class="project-user-add">
+        <span>
+          <i-feather name="plus"></i-feather>
+        </span>
+      </a>
+    </div>
+  </div>
+
+  <div class="project-item-add">
+    <a routerLink="dashboard/project/add" class="project-add-link">
+      <i-feather name="plus-circle" class="mr-1" style="color: #fff"></i-feather>
+      Start a new project
+    </a>
+  </div>
+
+  <hr>
+
+</div>

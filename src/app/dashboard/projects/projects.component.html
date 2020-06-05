@@ -15,7 +15,7 @@
 </nav>
 
 <div class="project-list">
-  <div class="project-item mb-3" *ngFor="let project of ownedProjects;">
+  <div class="project-item mb-5" *ngFor="let project of ownedProjects;">
     <hr>
 
     <div class="project-item-header">
@@ -33,7 +33,7 @@
         {{ project.owner.name }}
       </a>
       <a href="" class="project-user" *ngFor="let user of project.users">
-        <span>GM</span>
+        <span>{{ initials(user.name) }}</span>
         {{ user.name }}
       </a>
       <a routerLink="dashboard/project/1/users/add" class="project-user-add">
@@ -45,7 +45,7 @@
   </div>
 
   <div class="project-item-add">
-    <a routerLink="dashboard/project/add" class="project-add-link">
+    <a routerLink="/dashboard/projects/add" class="project-add-link">
       <i-feather name="plus-circle" class="mr-1" style="color: #000"></i-feather>
       Start a new project
     </a>

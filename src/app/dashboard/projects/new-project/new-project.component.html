@@ -1,0 +1,33 @@
+<nav class="navbar navbar sticky-top flex-md-nowrap p-0 mb-3">
+  <div class="navbar-actions">
+
+  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <i-feather name="user"></i-feather>
+    </li>
+    <li class="nav-item text-nowrap">
+      <i-feather name="bell"></i-feather>
+    </li>
+  </ul>
+</nav>
+
+<div class="col-md-6">
+  <h3 class="mb-3">Create Project</h3>
+
+  <form class="new-project-form" (submit)="createProject()">
+    <div class="form-group">
+      <input type="text" class="form-control" id="exampleInputName1" aria-describedby="name" placeholder="Name"
+        [(ngModel)]="form.name" name="name">
+    </div>
+    
+    <div class="form-group">
+      <select name="public" class="form-control" [(ngModel)]="form.public">
+        <option value="true">Public</option>
+        <option value="false">Private</option>
+      </select>
+    </div>
+  
+    <button type="submit" class="btn btn-outline-dark mb-3">Create</button>
+  </form>
+</div>

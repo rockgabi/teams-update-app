@@ -27,4 +27,13 @@ export class ProjectService {
       this.projects.next(data);
     });
   }
+
+  create(data) {
+    return new Promise((res, rej) => {
+      this.http.post('http://localhost:3000/projects', data).subscribe((project) => {
+        this.fetchOwnedProjects();
+        res(project);
+      });
+    });
+  }
 }

@@ -9,6 +9,8 @@ import { FeatherModule } from 'angular-feather';
 import { Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle } from 'angular-feather/icons';
 import { ProjectService } from '../shared/project.service';
 import { AuthGuardService as AuthGuard } from '../shared/auth.guard';
+import { NewProjectComponent } from './projects/new-project/new-project.component';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -17,16 +19,18 @@ const routes: Routes = [
     children: [
       { path: '', component: ProjectsComponent, canActivate: [AuthGuard] },
       { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
+      { path: 'projects/add', component: NewProjectComponent, canActivate: [AuthGuard] },
       { path: 'updates', component: ProjectsComponent, canActivate: [AuthGuard] },
     ]
   },
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, ProjectsComponent],
+  declarations: [DashboardComponent, ProjectsComponent, NewProjectComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),
+    FormsModule,
     FeatherModule.pick({ Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle }),
   ],
   exports: [RouterModule, FeatherModule],

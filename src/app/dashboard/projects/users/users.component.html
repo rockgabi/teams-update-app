@@ -39,9 +39,9 @@
       </tbody>
     </table>
 
-    <p *ngIf="project?.users && project.users.length === 0">No users added to this project yet</p>
+    <p *ngIf="project?.users && project.users.length === 0"><i>No users added to this project yet</i></p>
 
-    <p *ngIf="!project">Can't find this project</p>
+    <p *ngIf="!project"><i>Can't find this project</i></p>
   </div>
 
   <div class="col-md-6">

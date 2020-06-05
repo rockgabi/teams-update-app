@@ -27,7 +27,7 @@ export class NewProjectComponent implements OnInit {
   createProject() {
     this.projectService.create(this.form).then((data: any) => {
       this.toastr.success('Project has been created');
-      this.router.navigate(['dashboard/projects']);
+      this.router.navigate(['/dashboard/projects']);
     }, e => this.toastr.error('Project could not be created', 'There was a problem'));
   }
 

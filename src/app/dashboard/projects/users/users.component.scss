@@ -1,0 +1,15 @@
+nav {
+    .navbar-actions {
+        max-width: 420px;
+        flex: 1;
+    }
+
+    ul {
+        margin-left: auto;
+        flex-direction: row;
+        li {
+            display: block;
+            padding: 15px;
+        }
+    }
+}

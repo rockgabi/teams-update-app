@@ -1,0 +1,57 @@
+<nav class="navbar navbar sticky-top flex-md-nowrap p-0 mb-3">
+  <div class="navbar-actions">
+    <form action="">
+
+    </form>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <i-feather name="user"></i-feather>
+    </li>
+    <li class="nav-item text-nowrap">
+      <i-feather name="bell"></i-feather>
+    </li>
+  </ul>
+</nav>
+
+<h3 class="mb-3">Manage users for {{ project?.name }}</h3>
+
+<div class="row">
+  <div class="col-md-6">
+    <table class="table" *ngIf="project">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of project.users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button (click)="removeUser(user.id)" class="btn btn-link">
+                <i-feather name="trash-2"></i-feather>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p *ngIf="project?.users && project.users.length === 0">No users added to this project yet</p>
+
+    <p *ngIf="!project">Can't find this project</p>
+  </div>
+
+  <div class="col-md-6">
+    <form (submit)="addUser()">
+      <div class="form-group">
+        <input type="text" class="form-control" aria-describedby="email" placeholder="Email" [(ngModel)]="form.email"
+          name="email">
+      </div>
+
+      <button type="submit" class="btn btn-outline-dark mb-3">Add</button>
+    </form>
+  </div>
+</div>

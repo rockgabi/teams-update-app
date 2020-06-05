@@ -36,4 +36,22 @@ export class ProjectService {
       });
     });
   }
+
+  addUserByEmail(projectId, email) {
+    return new Promise((res, rej) => {
+      this.http.post('http://localhost:3000/projects/' + projectId + '/users/' + email, {}).subscribe((project) => {
+        this.fetchOwnedProjects();
+        res(project);
+      });
+    });
+  }
+
+  removeUser(projectId, userId) {
+    return new Promise((res, rej) => {
+      this.http.delete('http://localhost:3000/projects/' + projectId + '/users/' + userId, {}).subscribe(() => {
+        this.fetchOwnedProjects();
+        res();
+      });
+    });
+  }
 }

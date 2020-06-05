@@ -36,7 +36,7 @@
         <span>{{ initials(user.name) }}</span>
         {{ user.name }}
       </a>
-      <a routerLink="dashboard/project/1/users/add" class="project-user-add">
+      <a routerLink="/dashboard/projects/{{ project.id }}/users" class="project-user-add">
         <span>
           <i-feather name="plus"></i-feather>
         </span>

@@ -44,6 +44,8 @@
     </div>
   </div>
 
+  <p *ngIf="ownedProjects.length === 0"><i>You haven't created any project yet</i></p>
+
   <div class="project-item-add">
     <a routerLink="/dashboard/projects/add" class="project-add-link">
       <i-feather name="plus-circle" class="mr-1" style="color: #000"></i-feather>

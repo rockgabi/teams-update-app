@@ -20,7 +20,7 @@ export class AuthService {
         } else {
           res(false);
         }
-      });
+      }, err => rej());
     });
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
         } else {
           res(false);
         }
-      });
+      }, err => rej());
     });
   }
 

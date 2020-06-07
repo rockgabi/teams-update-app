@@ -50,7 +50,7 @@ export class ProjectsComponent implements OnInit {
     this.projectService.update(project.id, project);
   }
 
-  toggleCycle(project) {
+  updateProject(project) {
     this.projectService.update(project.id, project);
   }
 

@@ -17,7 +17,7 @@
 <h3 class="mb-5">Manage users for {{ project?.name }}</h3>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-8">
     <table class="table" *ngIf="project">
       <thead class="thead-dark">
         <tr>
@@ -44,7 +44,7 @@
     <p *ngIf="!project"><i>Can't find this project</i></p>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-4">
     <form (submit)="addUser()">
       <div class="form-group">
         <input type="text" class="form-control" aria-describedby="email" placeholder="Email" [(ngModel)]="form.email"

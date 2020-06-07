@@ -8,13 +8,13 @@ import { environment as env } from 'src/environments/environment';
 })
 export class ProjectService {
   public ownedProjects: BehaviorSubject<[]> = new BehaviorSubject([]);
-  public projects: BehaviorSubject<[]> = new BehaviorSubject([]);
+  public participantProjects: BehaviorSubject<[]> = new BehaviorSubject([]);
 
   constructor(
     private http: HttpClient,
   ) {
     this.fetchOwnedProjects();
-    this.fetchProjects();
+    this.fetchParticipantProjects();
   }
 
   fetchOwnedProjects() {
@@ -23,9 +23,9 @@ export class ProjectService {
     });
   }
 
-  fetchProjects() {
-    this.http.get(env.apiBaseUrl + 'projects').subscribe((data: []) => {
-      this.projects.next(data);
+  fetchParticipantProjects() {
+    this.http.get(env.apiBaseUrl + 'projects?owned=false').subscribe((data: []) => {
+      this.participantProjects.next(data);
     });
   }
 

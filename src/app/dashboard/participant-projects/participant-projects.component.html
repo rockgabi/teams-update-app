@@ -1,0 +1,47 @@
+<nav class="navbar navbar sticky-top flex-md-nowrap p-0 mb-3">
+    <div class="navbar-actions">
+      <form action="">
+        <input type="text" class="form-control" placeholder="Search">
+      </form>
+    </div>
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <i-feather name="user"></i-feather>
+      </li>
+      <li class="nav-item text-nowrap">
+        <i-feather name="bell"></i-feather>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="project-list">
+    <div class="project-item mb-5" *ngFor="let project of participantProjects;">
+      <hr />
+  
+      <div class="project-item-header">
+        <h3>{{ project.name }} <small><span class="badge"
+              [ngClass]="{'badge-danger': !project.public, 'badge-success': project.public}">{{ project.public ? 'public' : 'private' }}</span></small>
+        </h3>
+      </div>
+  
+      <hr />
+  
+      <div class="project-item-users">
+        <a href="" class="project-owner">
+          <span>{{ initials(project.owner.name) }}</span>
+          {{ project.owner.name }}
+        </a>
+        <a href="" class="project-user" *ngFor="let user of project.users">
+          <span>{{ initials(user.name) }}</span>
+          {{ user.name }}
+        </a>
+      </div>
+    </div>
+  
+    <p *ngIf="participantProjects.length === 0"><i>You haven't joined to any project yet</i></p>
+  
+  
+    <hr>
+  
+  </div>
+  

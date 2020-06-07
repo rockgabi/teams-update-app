@@ -13,8 +13,14 @@ import { DashboardComponent } from './dashboard.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { NewProjectComponent } from './projects/new-project/new-project.component';
 import { UsersComponent } from './projects/users/users.component';
+import { ParticipantProjectsComponent } from './participant-projects/participant-projects.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -23,12 +29,13 @@ const routes: Routes = [
       { path: 'projects', component: ProjectsComponent, canActivate: [AuthGuard] },
       { path: 'projects/add', component: NewProjectComponent, canActivate: [AuthGuard] },
       { path: 'projects/:id/users', component: UsersComponent, canActivate: [AuthGuard] },
+      { path: 'participating-projects', component: ParticipantProjectsComponent, canActivate: [AuthGuard] },
     ]
   },
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, ProjectsComponent, NewProjectComponent, UsersComponent],
+  declarations: [DashboardComponent, ProjectsComponent, NewProjectComponent, UsersComponent, ParticipantProjectsComponent],
   imports: [
     CommonModule,
     RouterModule.forRoot(routes),

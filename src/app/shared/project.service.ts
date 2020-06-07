@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { environment as env } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,21 +18,30 @@ export class ProjectService {
   }
 
   fetchOwnedProjects() {
-    this.http.get('http://localhost:3000/projects?owned=true').subscribe((data: []) => {
+    this.http.get(env.apiBaseUrl + 'projects?owned=true').subscribe((data: []) => {
       this.ownedProjects.next(data);
     });
   }
 
   fetchProjects() {
-    this.http.get('http://localhost:3000/projects').subscribe((data: []) => {
+    this.http.get(env.apiBaseUrl + 'projects').subscribe((data: []) => {
       this.projects.next(data);
     });
   }
 
   create(data) {
     return new Promise((res, rej) => {
-      this.http.post('http://localhost:3000/projects', data).subscribe((project) => {
+      this.http.post(env.apiBaseUrl + 'projects', data).subscribe((project) => {
         this.fetchOwnedProjects();
+        res(project);
+      });
+    });
+  }
+
+  update(id, data) {
+    return new Promise((res, rej) => {
+      this.http.put(env.apiBaseUrl + 'projects' + '/' + id, data).subscribe((project) => {
+        // this.fetchOwnedProjects();
         res(project);
       });
     });
@@ -39,7 +49,7 @@ export class ProjectService {
 
   addUserByEmail(projectId, email) {
     return new Promise((res, rej) => {
-      this.http.post('http://localhost:3000/projects/' + projectId + '/users/' + email, {}).subscribe((project) => {
+      this.http.post(env.apiBaseUrl + 'projects/' + projectId + '/users/' + email, {}).subscribe((project) => {
         this.fetchOwnedProjects();
         res(project);
       });
@@ -48,7 +58,7 @@ export class ProjectService {
 
   removeUser(projectId, userId) {
     return new Promise((res, rej) => {
-      this.http.delete('http://localhost:3000/projects/' + projectId + '/users/' + userId, {}).subscribe(() => {
+      this.http.delete(env.apiBaseUrl + 'projects/' + projectId + '/users/' + userId, {}).subscribe(() => {
         this.fetchOwnedProjects();
         res();
       });

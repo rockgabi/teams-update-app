@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
-import { Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2 } from 'angular-feather/icons';
+import { Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2, Check } from 'angular-feather/icons';
+import { NgbPopoverModule, NgbButtonsModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ProjectService } from '../shared/project.service';
 import { AuthGuardService as AuthGuard } from '../shared/auth.guard';
@@ -32,7 +33,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    FeatherModule.pick({ Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2 }),
+    FeatherModule.pick({ Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2, Check }),
+    NgbButtonsModule,
+    NgbPopoverModule,
   ],
   exports: [RouterModule, FeatherModule],
   providers: [ProjectService],

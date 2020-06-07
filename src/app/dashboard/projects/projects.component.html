@@ -19,10 +19,42 @@
     <hr>
 
     <div class="project-item-header">
-      <h3>{{ project.name }} <small><span class="badge badge-danger">{{ project.public ? 'public' : 'private' }}</span></small></h3>
-      <button class="btn btn-link">
+      <h3>{{ project.name }} <small><span
+            class="badge badge-danger">{{ project.public ? 'public' : 'private' }}</span></small></h3>
+      <button class="btn btn-link" [ngbPopover]="popContent" [popoverTitle]="'Project Settings'"
+        [autoClose]="'outside'">
         <i-feather name="more-vertical"></i-feather>
       </button>
+
+      <ng-template #popContent>
+        <div class="settings-popover">
+          <div class="cycle-settings mb-3">
+            <div class="cycle-settings-head">
+              <p>Update Cycle:</p>
+
+              <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" [(ngModel)]="project.cycle_type"
+                (change)="toggleCycle(project)">
+                <label ngbButtonLabel class="btn-primary btn-sm">
+                  <input ngbButton type="radio" [value]="null"> Off
+                </label>
+                <label ngbButtonLabel class="btn-primary btn-sm">
+                  <input ngbButton type="radio" [value]="'daily'"> Daily
+                </label>
+                <label ngbButtonLabel class="btn-primary btn-sm">
+                  <input ngbButton type="radio" [value]="'weekly'"> Weekly
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="color-settings mb-3">
+            <button class="btn btn-link" [ngClass]="{'selected': project.color === colorSetting.hex}"
+              *ngFor="let colorSetting of colorSettings" [ngStyle]="{'background-color': '#' + colorSetting.hex}"
+              (click)="toggleColor(project, colorSetting.hex)">
+              <i-feather name="check" style="width: 17px;"></i-feather>
+            </button>
+          </div>
+        </div>
+      </ng-template>
     </div>
 
     <hr />

@@ -74,3 +74,25 @@ nav {
         margin-top: 60px;
     }
 }
+
+.settings-popover {
+    .color-settings {
+        display: flex;
+        flex-flow: row wrap;
+        button {
+            flex-basis: 20%;
+            color: #fff;
+            border-radius: 0;
+
+            > * {
+                visibility: hidden;
+            }
+
+            &.selected {
+                > * {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+}

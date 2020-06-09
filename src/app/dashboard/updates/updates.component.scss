@@ -1,0 +1,36 @@
+nav {
+  .navbar-actions {
+    max-width: 420px;
+    flex: 1;
+  }
+
+  ul {
+    margin-left: auto;
+    flex-direction: row;
+    li {
+      display: block;
+      padding: 15px;
+    }
+  }
+}
+
+mgl-timeline-entry {
+  mgl-timeline-entry-dot {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    border: 2px solid #000;
+    z-index: 9;
+  }
+
+  &.expanded {
+    mgl-timeline-entry-dot {
+      z-index: 0;
+      span {
+        display: none;
+      }
+    }
+  }
+}

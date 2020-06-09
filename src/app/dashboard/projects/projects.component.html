@@ -19,8 +19,11 @@
     <hr>
 
     <div class="project-item-header">
-      <h3>{{ project.name }} <small><span class="badge"
-            [ngClass]="{'badge-danger': !project.public, 'badge-success': project.public}">{{ project.public ? 'public' : 'private' }}</span></small>
+      <h3>
+        <a [routerLink]="'/dashboard/projects/' + project.id + '/updates'">
+          {{ project.name }} 
+        <small><span class="badge" [ngClass]="{'badge-danger': !project.public, 'badge-success': project.public}">{{ project.public ? 'public' : 'private' }}</span></small>
+        </a>
       </h3>
       <button class="btn btn-link" [ngbPopover]="popContent" [popoverTitle]="'Project Settings'"
         [autoClose]="'outside'">

@@ -1,0 +1,58 @@
+<nav class="navbar navbar sticky-top flex-md-nowrap p-0 mb-3">
+  <div class="navbar-actions">
+    <form action="">
+      <input type="text" class="form-control" placeholder="Search">
+    </form>
+  </div>
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <i-feather name="user"></i-feather>
+    </li>
+    <li class="nav-item text-nowrap">
+      <i-feather name="bell"></i-feather>
+    </li>
+  </ul>
+</nav>
+
+<div class="updates-container">
+  <div class="row">
+    <div class="col-md-8">
+      <h3 class="mb-5">
+        Updates for {{ project?.name }}
+        <small>
+          <span 
+          class="badge" 
+          [ngStyle]="{'background-color': project?.color ? '#' + project.color + '!important' : '#fff'}"
+          [ngClass]="{'badge-danger': !project.public, 'badge-success': project.public}">{{ project.public ? 'public' : 'private' }}
+        </span>
+        </small>
+      </h3>
+
+      <div class="update-form mb-5">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1">+</span>
+          </div>
+          <input type="text" class="form-control" placeholder="What are you going to accomplish today..."
+            aria-label="update" aria-describedby="basic-addon1">
+        </div>
+      </div>
+
+      <div class="update-timeline">
+        <p *ngIf="updates.length === 0"><i>This project doesn't have any update yet</i></p>
+        <mgl-timeline [toggle]="true" [alternate]="true" [side]="'right'" *ngFor="let update of updates">
+            <mgl-timeline-entry>
+                <mgl-timeline-entry-header [ngStyle]="{'background-color': update.project?.color ? '#' + update.project.color : '#fff' }">{{ update.title }}</mgl-timeline-entry-header>
+                <mgl-timeline-entry-content>{{ update.content }}</mgl-timeline-entry-content>
+                <mgl-timeline-entry-side>{{ update.createdAt | date }}</mgl-timeline-entry-side>
+                <mgl-timeline-entry-dot [ngStyle]="{'background-color': update.project?.color ? '#' + update.project.color : '#fff' }"><span>{{ initials(update.user.name) }}</span></mgl-timeline-entry-dot>
+            </mgl-timeline-entry>
+        </mgl-timeline>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+
+    </div>
+  </div>
+</div>

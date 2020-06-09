@@ -29,6 +29,14 @@ export class ProjectService {
     });
   }
 
+  fetchById(id) {
+    return new Promise((res, rej) => {
+      this.http.get(env.apiBaseUrl + 'projects/' + id).subscribe((data: any) => {
+        res(data);
+      });
+    });
+  }
+
   create(data) {
     return new Promise((res, rej) => {
       this.http.post(env.apiBaseUrl + 'projects', data).subscribe((project) => {

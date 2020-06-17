@@ -9,6 +9,7 @@ import { ProjectService } from 'src/app/shared/project.service';
 export class ProjectsComponent implements OnInit {
 
   public ownedProjects: [] = [];
+  public projects: [] = [];
   public cycle: 'daily' | 'weekly' = null;
   public colorSettings = [
     { color: 'a', hex: '5ebd56' },
@@ -27,6 +28,7 @@ export class ProjectsComponent implements OnInit {
     private projectService: ProjectService,
   ) {
     this.projectService.ownedProjects.subscribe(projects => this.ownedProjects = projects);
+    this.projectService.participantProjects.subscribe(projects => this.projects = projects);
   }
 
   ngOnInit(): void {

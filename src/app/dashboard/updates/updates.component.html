@@ -22,8 +22,8 @@
         <small>
           <span 
           class="badge" 
-          [ngStyle]="{'background-color': project?.color ? '#' + project.color + '!important' : '#fff'}"
-          [ngClass]="{'badge-danger': !project.public, 'badge-success': project.public}">{{ project.public ? 'public' : 'private' }}
+          [ngStyle]="{'background-color': project?.color ? '#' + project?.color + '!important' : '#fff'}"
+          [ngClass]="{'badge-danger': project && !project.public, 'badge-success': project?.public}">{{ project && project?.public ? 'public' : 'private' }}
         </span>
         </small>
       </h3>
@@ -34,25 +34,33 @@
             <span class="input-group-text" id="basic-addon1">+</span>
           </div>
           <input type="text" class="form-control" placeholder="What are you going to accomplish today..."
-            aria-label="update" aria-describedby="basic-addon1">
+            aria-label="update" aria-describedby="basic-addon1" (keyup.enter)="postUpdate()" [(ngModel)]="updateText">
         </div>
       </div>
 
       <div class="update-timeline">
         <p *ngIf="updates.length === 0"><i>This project doesn't have any update yet</i></p>
-        <mgl-timeline [toggle]="true" [alternate]="true" [side]="'right'" *ngFor="let update of updates">
-            <mgl-timeline-entry>
-                <mgl-timeline-entry-header [ngStyle]="{'background-color': update.project?.color ? '#' + update.project.color : '#fff' }">{{ update.title }}</mgl-timeline-entry-header>
-                <mgl-timeline-entry-content>{{ update.content }}</mgl-timeline-entry-content>
-                <mgl-timeline-entry-side>{{ update.createdAt | date }}</mgl-timeline-entry-side>
-                <mgl-timeline-entry-dot [ngStyle]="{'background-color': update.project?.color ? '#' + update.project.color : '#fff' }"><span>{{ initials(update.user.name) }}</span></mgl-timeline-entry-dot>
-            </mgl-timeline-entry>
-        </mgl-timeline>
+
+        <nz-timeline>
+          <!-- <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item> -->
+          <nz-timeline-item *ngFor="let update of updates">
+            <p>{{ update.title }}</p>
+            <p>{{ update.content }}</p>
+          </nz-timeline-item>
+        </nz-timeline>
+
+        <ng-template #dotTemplate>
+          <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
+        </ng-template>
       </div>
     </div>
 
     <div class="col-md-4">
+      <h3 class="mb-5">
+        {{ user?.name }}
+      </h3>
 
+      <ngb-datepicker #dp  (navigate)="date = $event.next"></ngb-datepicker>
     </div>
   </div>
 </div>

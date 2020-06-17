@@ -4,8 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2, Check } from 'angular-feather/icons';
-import { NgbPopoverModule, NgbButtonsModule } from '@ng-bootstrap/ng-bootstrap';
-import { MglTimelineModule } from 'angular-mgl-timeline';
+import { NgbPopoverModule, NgbButtonsModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ProjectService } from '../shared/project.service';
@@ -48,10 +49,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    MglTimelineModule,
+    NzTimelineModule,
+    NzIconModule,
     FeatherModule.pick({ Folder, CreditCard, User, Bell, MoreVertical, Plus, PlusCircle, Trash2, Check }),
     NgbButtonsModule,
     NgbPopoverModule,
+    NgbDatepickerModule,
   ],
   exports: [RouterModule, FeatherModule],
   providers: [ProjectService],

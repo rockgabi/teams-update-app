@@ -14,7 +14,21 @@ An update can have comments and reactions to comments.
 
 ## TODO
 
-- Group updates by day, and add timeline item for each day
+- Group updates by day/week, and add timeline item for each day/week
 - Search through updates
 - Calendar: clickinga date, takes you to that day.
 - Add ngx-virtual-scroller
+
+## Grouped Updates
+
+A project can cycle updates by day or by week. Updates have to be retrieved grouped by it's cycle.
+
+A user can only send one update per cycle.
+
+## Grouped Updates in the UI
+
+The grouped updates are the source of data for the timeline, and we expect the heavy lifting to be done in the backend and data coming structured for it's direct usage (tightly coupled).
+
+#### Daily Grouped Updates
+
+The timeline will display empty dates, so we need the API to provide one entry per day, even if it has no updates in it.

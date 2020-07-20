@@ -13,6 +13,11 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class UpdatesComponent implements OnInit {
 
   public updates: [] = [];
+  public pagination: any = {
+    total_pages: null,
+    page: null,
+    per_page: null
+  };
   public project: any = null;
   public updateText: string = '';
   public projectId: number = null;
@@ -27,7 +32,11 @@ export class UpdatesComponent implements OnInit {
     private authService: AuthService,
   ) {
     this.projectId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.updateService.getObservable(this.projectId).subscribe(updates => this.updates = updates);
+    this.updateService.getObservable(this.projectId).subscribe((updates: any) => {
+      this.pagination = updates.pagination;
+      this.updates = updates.data;
+      console.log('Updates ', updates);
+    });
     this.updateService.fetch(this.projectId);
     this.projectService.fetchById(this.projectId).then(project => this.project = project);
 
@@ -53,6 +62,13 @@ export class UpdatesComponent implements OnInit {
         this.updateText = '';
       });
     }
+  }
+
+  loadMore() {
+    this.updateService.fetch(this.projectId, {
+      page: this.pagination.page + 1,
+      per_page: this.pagination.per_page ? this.pagination.per_page : 5,
+    });
   }
 
 }

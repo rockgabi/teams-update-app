@@ -40,9 +40,22 @@
 
       <div class="update-timeline">
         <p *ngIf="updates.length === 0"><i>This project doesn't have any update yet</i></p>
-
         <nz-timeline>
-          <!-- <nz-timeline-item nzColor="red" [nzDot]="dotTemplate">Technical testing 2015-09-01</nz-timeline-item> -->
+          <nz-timeline-item *ngFor="let groupedUpdates of updates">
+            <p>{{ groupedUpdates.startDate | date }}</p>
+            <p *ngIf="groupedUpdates.data.length === 0"><i>There's no updates for this date</i></p>
+
+            <p *ngFor="let update of groupedUpdates.data">
+              <b>{{ update.user.name }}</b> - {{ update.createdAt | date: 'H:mm' }}: {{ update.content }}
+            </p>
+
+          </nz-timeline-item>
+        </nz-timeline>
+
+        <button class="btn btn-primary" *ngIf="this.pagination.total_pages > this.pagination.page"
+          (click)="loadMore()">Load More</button>
+
+        <!-- <nz-timeline>
           <nz-timeline-item *ngFor="let update of updates">
             <p>{{ update.title }}</p>
             <p>{{ update.content }}</p>
@@ -51,13 +64,13 @@
 
         <ng-template #dotTemplate>
           <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
-        </ng-template>
+        </ng-template> -->
       </div>
     </div>
 
     <div class="col-md-4">
       <h3 class="mb-5">
-        {{ user?.name }}
+        <!-- {{ user?.name }} -->
       </h3>
 
       <ngb-datepicker #dp  (navigate)="date = $event.next"></ngb-datepicker>
